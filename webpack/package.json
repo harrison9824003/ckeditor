@@ -4,15 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^41.4.2",
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-ckfinder": "^41.4.2",
+    "@ckeditor/ckeditor5-cloud-services": "^41.4.2",
+    "@ckeditor/ckeditor5-dev-translations": "^40.2.1",
     "@ckeditor/ckeditor5-dev-utils": "^40.2.1",
     "@ckeditor/ckeditor5-editor-classic": "^41.4.2",
     "@ckeditor/ckeditor5-essentials": "^41.4.2",
+    "@ckeditor/ckeditor5-image": "^41.4.2",
     "@ckeditor/ckeditor5-paragraph": "^41.4.2",
     "@ckeditor/ckeditor5-theme-lark": "^41.4.2",
     "css-loader": "^5.2.7",
