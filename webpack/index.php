@@ -6,9 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="editor">
-        <p>The editor content goes here.</p>
-    </div>
+    <textarea id="editor" placeholder="請輸入內容">
+    </textarea>
 </body>
 <script src="./dist/bundle.js?v=3"></script>
 </html>

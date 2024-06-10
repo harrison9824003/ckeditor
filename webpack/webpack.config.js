@@ -1,9 +1,14 @@
 'use strict';
 
+const Dotenv = require('dotenv-webpack');
+
 const path = require( 'path' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 
 module.exports = {
+    plugins: [
+        new Dotenv()
+    ],
     // https://webpack.js.org/configuration/entry-context/
     entry: './app.js',
 

@@ -1,23 +1,30 @@
 import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
-import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
-import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
+import { Bold, Italic, Underline, Strikethrough } from '@ckeditor/ckeditor5-basic-styles';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-import { CKBox, CKBoxImageEdit } from "@ckeditor/ckeditor5-ckbox";
 import Link from '@ckeditor/ckeditor5-link/src/link';
-import PictureEditing from '@ckeditor/ckeditor5-image/src/pictureediting';
-import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 import { CKFinder } from '@ckeditor/ckeditor5-ckfinder';
-// import CKFinderUploadAdapter from '@ckeditor/ckeditor5-ckfinder/src/ckfinderuploadadapter';
 import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
-import '@ckeditor/ckeditor5-build-classic/build/translations/zh';
+import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
+import { List } from '@ckeditor/ckeditor5-list';
+import { Alignment } from '@ckeditor/ckeditor5-alignment';
 
+// 載入語言包
+import '@ckeditor/ckeditor5-build-classic/build/translations/zh';
+import '@ckeditor/ckeditor5-alignment/build/translations/zh';
+import '@ckeditor/ckeditor5-basic-styles/build/translations/zh';
+import '@ckeditor/ckeditor5-block-quote/build/translations/zh';
+import '@ckeditor/ckeditor5-font/build/translations/zh';
+import '@ckeditor/ckeditor5-heading/build/translations/zh';
+import '@ckeditor/ckeditor5-image/build/translations/zh';
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
@@ -28,23 +35,83 @@ ClassicEditor
             Bold, 
             Italic, 
             Image,
+            Underline,
+            Strikethrough,
             ImageToolbar,
             ImageCaption,
             ImageStyle,
             ImageUpload,
             ImageResize,
-            // CKBox,
-            // CKBoxImageEdit,
             Link,
-            // PictureEditing,
-            // CloudServices,
             CKFinder,
-            CKFinderUploadAdapter
+            CKFinderUploadAdapter,
+            Heading,
+            Font,
+            FindAndReplace,
+            List,
+            Alignment
         ],
-        toolbar: [ 'bold', 'italic', '|', 'imageUpload' ],
+        toolbar: [
+            'undo',
+            'redo',
+            'findAndReplace',
+            '|',
+            'heading',
+            'bulletedList',
+            'numberedList',
+            '|',
+            'fontFamily',
+            'fontSize',
+            'fontColor',
+            'fontBackgroundColor',
+            '|',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            '|',
+            'alignment',
+            '|',
+            'imageUpload',
+            '|',
+            'link',
+        ],
+        fontFamily: {
+            options: [
+                'default',
+                'Arial, Helvetica, sans-serif',
+                'Courier New, Courier, monospace',
+                'Georgia, serif',
+                'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Times New Roman, Times, serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif'
+            ]
+        },
+        fontSize: {
+            options: [
+                9,
+                11,
+                13,
+                'default',
+                17,
+                19,
+                21
+            ]
+        },
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+            ]
+        },
         ckfinder: {
             // Upload the images to the server using the CKFinder QuickUpload command.
-            uploadUrl: 'http://localhost:8080/upload.php',
+            uploadUrl: process.env.UPLOAD_URL || 'http://localhost:8080/upload.php',
 
             // Define the CKFinder configuration (if necessary).
             options: {
